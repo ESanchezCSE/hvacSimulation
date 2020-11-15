@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "821999738541",
+    "firebase_url": "https://hvac-via-mobile-app.firebaseio.com",
+    "project_id": "hvac-via-mobile-app",
+    "storage_bucket": "hvac-via-mobile-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821999738541:android:d8af5fb2e6e854eb62f024",
+        "android_client_info": {
+          "package_name": "com.example.hvacsimulation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "821999738541-gm0o2ief6uilat6imfdaq968eapodbq8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7loIuxh3ThldOvKMT6JedhgM85JFm3bE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "821999738541-gm0o2ief6uilat6imfdaq968eapodbq8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
