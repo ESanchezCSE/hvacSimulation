@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,10 +22,15 @@ public class MainActivity extends AppCompatActivity {
 
     Button getInfoButton;
 
+    EditText editTargetTemp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Get input from text boxes
+        editTargetTemp = (EditText) findViewById(R.id.editNewTargetTemp);
 
         //Button
         getInfoButton = (Button) findViewById(R.id.getInfoBTN);
@@ -31,20 +38,58 @@ public class MainActivity extends AppCompatActivity {
         getInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //basicReadWrite();
+                int newTargetTemp = Integer.parseInt(editTargetTemp.getText().toString());
+                basicWrite(newTargetTemp);
             }
         });
 
-        basicReadWrite();
+        basicRead();
 
     }
 
+    // Functions used to determine weather the sun or the moon should be out.
+    public void updateDayOrNight(String toThis){
+        int inum = Integer.parseInt(toThis);
+        if((inum >= 6 && inum <= 8) || (inum >= 18 && inum <= 20)) {//Display Dusk or Dawn
+            //ImageView
+            ImageView img = (ImageView) findViewById(R.id.imageCurrTime);
+            img.setImageResource(R.drawable.ic_baseline_brightness_4_24);
+        } else if(inum > 8 && inum < 18){//Display day cycle
+            ImageView img = (ImageView) findViewById(R.id.imageCurrTime);
+            img.setImageResource(R.drawable.ic_baseline_brightness_5_24);
+        } else {//Display night
+            ImageView img = (ImageView) findViewById(R.id.imageCurrTime);
+            img.setImageResource(R.drawable.ic_baseline_brightness_2_24);
+        }
+    }
+
+    // Functions used to display the current temperature outside of the house.
     public void updateCurrTemp(String toThis) {
         TextView textView = (TextView) findViewById(R.id.currTempText);
         textView.setText(toThis);
     }
 
-    public void basicReadWrite() {
+    // Functions used to display the current temperature inside of the house.
+    public void updateCurrInsideTemp(String toThis) {
+        TextView textView = (TextView) findViewById(R.id.currInsideTempText);
+        textView.setText(toThis);
+    }
+
+    // Functions used to display the current target temp inside of the house.
+    public void updateTargetTemp(String toThis) {
+        TextView textView = (TextView) findViewById(R.id.targetTempText);
+        textView.setText(toThis);
+    }
+
+    public void basicWrite(int number){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("home");
+
+        myRef.child("targetTemp").setValue(number);
+    }
+
+    public void basicRead() {
+        int time = 0;
         // [START write_message]
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -60,9 +105,16 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.child("currOutsideTemp").getValue().toString();
-                Log.d(TAG, "Value is: " + value);
-                updateCurrTemp(value);
+                String outsideTempValue = dataSnapshot.child("currOutsideTemp").getValue().toString();
+                String currentHour = dataSnapshot.child("hour").getValue().toString();
+                String insideTempValue = dataSnapshot.child("currInsideTemp").getValue().toString();
+                String targetTempValue = dataSnapshot.child("targetTemp").getValue().toString();
+
+                Log.d(TAG, "Value is: " + outsideTempValue);
+                updateCurrTemp(outsideTempValue);
+                updateCurrInsideTemp(insideTempValue);
+                updateTargetTemp(targetTempValue);
+                updateDayOrNight(currentHour);
             }
 
             @Override
