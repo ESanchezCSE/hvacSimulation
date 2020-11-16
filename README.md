@@ -16,3 +16,6 @@ to the database.
 
 <img src="https://github.com/ESanchezCSE/images/blob/main/afterChangeTemp_hvacSimulation.jpg" alt="Loading Screen" width="200"/>
 
+<img src="https://github.com/ESanchezCSE/images/blob/main/beforeChangeTemp_hvacSimulation.jpg" alt="Loading Screen" width="200"/>
+
+<img src="https://github.com/ESanchezCSE/images/blob/main/afterChangeTemp_hvacSimulation.jpg" alt="Loading Screen" width="200"/>
