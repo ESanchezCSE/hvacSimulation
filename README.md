@@ -13,4 +13,4 @@ to the database.
 3. Android device use to display to the user the real-time data of the house. The user could also control the target temperature of the AC unit in real-time.
 
 ## App Demo
-![Loading Screen](https://github.com/ESanchezCSE/images/blob/main/afterChangeTemp_hvacSimulation.jpg =420*840)
+![Loading Screen](https://github.com/ESanchezCSE/images/blob/main/afterChangeTemp_hvacSimulation.jpg =420x840)
