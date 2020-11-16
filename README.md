@@ -14,10 +14,16 @@ to the database.
 
 ## App Demo
 Loading Screen
+
+
 <img src="https://github.com/ESanchezCSE/images/blob/main/afterChangeTemp_hvacSimulation.jpg" alt="Loading Screen" width="200"/>
 
 Before sending the new AC temperature target
+
+
 <img src="https://github.com/ESanchezCSE/images/blob/main/beforeChangeTemp_hvacSimulation.jpg" alt="Loading Screen" width="200"/>
 
 After send the new AC temperature target
+
+
 <img src="https://github.com/ESanchezCSE/images/blob/main/afterChangeTemp_hvacSimulation.jpg" alt="Loading Screen" width="200"/>
